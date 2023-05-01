@@ -421,6 +421,15 @@ func (o *Operation) Password(prompt string) ([]byte, error) {
 	return o.PasswordEx(prompt, nil)
 }
 
+func (o *Operation) ReadWithMask(m rune, prompt string) ([]byte, error) {
+	cfg := o.GenPasswordConfig()
+	cfg.Prompt = prompt
+	cfg.Listener = nil
+	cfg.EnableMask = true
+	cfg.MaskRune = m
+	return o.PasswordWithConfig(cfg)
+}
+
 func (o *Operation) SetTitle(t string) {
 	o.w.Write([]byte("\033[2;" + t + "\007"))
 }

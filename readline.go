@@ -232,6 +232,10 @@ func (i *Instance) ReadPassword(prompt string) ([]byte, error) {
 	return i.Operation.Password(prompt)
 }
 
+func (i *Instance) ReadWithMask(m rune, prompt string) ([]byte, error) {
+	return i.Operation.ReadWithMask(m, prompt)
+}
+
 type Result struct {
 	Line  string
 	Error error
